@@ -12,15 +12,15 @@ use crate::serialization::b64_decode;
 /// set to `JWT`. All the other fields are optional.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Hash)]
 pub struct Header {
+    /// The algorithm used
+    ///
+    /// Defined in [RFC7515#4.1.1](https://tools.ietf.org/html/rfc7515#section-4.1.1).
+    pub alg: Algorithm,
     /// The type of JWS: it can only be "JWT" here
     ///
     /// Defined in [RFC7515#4.1.9](https://tools.ietf.org/html/rfc7515#section-4.1.9).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub typ: Option<String>,
-    /// The algorithm used
-    ///
-    /// Defined in [RFC7515#4.1.1](https://tools.ietf.org/html/rfc7515#section-4.1.1).
-    pub alg: Algorithm,
     /// Content type
     ///
     /// Defined in [RFC7519#5.2](https://tools.ietf.org/html/rfc7519#section-5.2).
